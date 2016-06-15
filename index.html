@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/index.css" />
+</head>
+<body>
+	<div class="wrap">
+		<div class="header">
+		<li>
+			<a href="index.html">
+				<img src="img/index.gif">
+				<h1>高雄地區復健診所</h1>
+			</a>
+		</li>
+				<div class="classify">
+					<ul class="classify">
+						<li><a href="introduce.html">網站簡介</a></li>
+						<li><a href="product.html">復健商品</a></li>
+					</ul>
+				</div>
+				<script>
+				$(".classify > ul").mouseover(function(){
+    				$(".classify > ul> li >a:first").css("background-color","blue");
+  				});
+  				$("ul.classify > li").mouseout(function(){
+    				$("ul.classify >li >a:first").css("color","white");
+  				});
+				</script>
+		</div>
+		<div class="index_space"></div>
+		<div class="select_zone">
+			<ul>
+				<li>請選擇復健診所地區<br>
+					<select>
+						<option value="" disabled selected>--請選擇--</option>
+    			      	<option value="1">楠梓區</option>
+    			 	    <option value="2">左營區</option>
+    			 	    <option value="3">三民區</option>
+		                <option value="4">鹽埕區</option>
+		                <option value="5">前金區</option>
+		                <option value="6">新興區</option>
+		                <option value="7">苓雅區</option>
+		                <option value="8">前鎮區</option>
+		                <option value="9">旗津區</option>
+		                <option value="10">小港區</option>
+		                <option value="11">鳳山區</option>
+		                <option value="12">大寮區</option>
+		                <option value="13">鳥松區</option>
+		                <option value="14">林園區</option>
+		                <option value="15">仁武區</option>
+		                <option value="16">大樹區</option>
+		                <option value="17">大社區</option>
+		                <option value="18">岡山區</option>
+		                <option value="19">路竹區</option>
+		                <option value="20">梓官區</option>
+		                <option value="21">彌陀區</option>
+		                <option value="22">橋頭區</option>
+		                <option value="23">永安區</option>
+		                <option value="24">燕巢區</option>
+		                <option value="25">田寮區</option>
+		                <option value="26">阿蓮區</option>
+		                <option value="27">茄萣區</option>
+		                <option value="28">湖內區</option>
+		                <option value="29">旗山區</option>
+		                <option value="30">美濃區</option>
+		                <option value="31">內門區</option>
+		                <option value="32">甲仙區</option>
+		                <option value="33">六龜區</option>
+		                <option value="34">杉林區</option>
+		                <option value="35">茂林區</option>
+		                <option value="36">桃源區</option>
+		                <option value="37">那瑪夏區</option>
+					</select>
+				</li>
+				<br>
+				<li>請選擇復健類別<br>
+					<select>
+						<option value="" disabled selected>--請選擇--</option>
+    			      	<option value="1">職能</option>
+    			 	    <option value="2">心理</option>
+    			 	    <option value="3">物理</option>
+                		<option value="4">語言</option>
+                		<option value="5">舞蹈</option>
+                		<option value="6">特教</option>
+                		<option value="7">音樂</option>
+                		<option value="8">藝術</option>
+                		<option value="9">其他</option>
+					</select>
+				</li>
+			</ul>
+		</div>
+
+		<div class="select_result">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3679.842553585768!2d120.28146041436892!3d22.734092732754164!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e0f114a51d53b%3A0xe6e681ecaffe55f2!2z5ZyL56uL6auY6ZuE5aSn5a24!5e0!3m2!1szh-TW!2stw!4v1465752925523" width="900" height="675" frameborder="0" style="border:0" allowfullscreen></iframe>
+		</div>
+		<div class="clear"></div>
+		<div class="footer">
+			<p>
+                Copyright © 2016 by 高大資管系學生. All rights reserved.
+            </p>
+		</div>
+	</div>
+</body>
+</html>
