@@ -6,6 +6,23 @@
 	<link rel="stylesheet" href="css/index.css" />
 </head>
 <body>
+<style type="text/css">
+</style>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtaQI1JTXjAtt1Mwsy6nVlZrao_uEUWRc">
+</script>
+<script type="text/javascript">
+    function initialize() {
+	var mapOptions = {
+	center: { lat: 22.7340927, lng: 120.2814604},
+	zoom: 16
+    };
+    var map = new google.maps.Map(
+    document.getElementById('map-canvas'),
+    mapOptions);
+    }
+    google.maps.event.addDomListener(
+    window, 'load', initialize);
+</script>
 	<div class="wrap">
 		<div class="header">
 		<li>
@@ -93,7 +110,7 @@
 		</div>
 
 		<div class="select_result">
-			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3679.842553585768!2d120.28146041436892!3d22.734092732754164!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e0f114a51d53b%3A0xe6e681ecaffe55f2!2z5ZyL56uL6auY6ZuE5aSn5a24!5e0!3m2!1szh-TW!2stw!4v1465752925523" width="900" height="675" frameborder="0" style="border:0" allowfullscreen></iframe>
+			<div id="map-canvas"></div>
 		</div>
 		<div class="clear"></div>
 		<div class="footer">
