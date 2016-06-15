@@ -41,6 +41,13 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+#map-canvas{
+	height: 600px; 
+	width: 80%;
+	margin-left: 10%;
+	margin-top: 50px;
+	border: 1px solid #CCC; 
+}
 .wrap{
 	width: 100%;
 	margin: 0 auto;
@@ -53,6 +60,7 @@ table {
 	opacity:0.9;
 	width: 100%;
 	box-shadow: 0 0 8px 0 #b3b3b3;
+	z-index: 99;
 }
 .header li{
 	margin-left: 40px;
@@ -209,6 +217,7 @@ table {
 .select_result{
 	float: left;
 	width: 85%;
+	height: 700px;
 	text-align: center;
 }
 .product_unit{
