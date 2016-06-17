@@ -41,6 +41,13 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+#map-canvas{
+	height: 600px; 
+	width: 80%;
+	margin-left: 10%;
+	margin-top: 50px;
+	border: 1px solid #CCC; 
+}
 .wrap{
 	width: 100%;
 	margin: 0 auto;
@@ -53,6 +60,7 @@ table {
 	opacity:0.9;
 	width: 100%;
 	box-shadow: 0 0 8px 0 #b3b3b3;
+	z-index: 99;
 }
 .header li{
 	margin-left: 40px;
@@ -190,26 +198,29 @@ table {
 	font-family: 微軟正黑體;
 	font-size: 12px;
 }
-.select_zone{
+.select_requirement{
 	float: left;
-	width: 15%;
+	width: 18%;
 	height: 700px;
 	background: white;
-	//text-align: center;
 	box-shadow: 0 0 8px 0 #b3b3b3;
 }
-.select_zone ul{
+.select_requirement ul{
 	margin-top: 20px;
 }
-.select_zone li{
+.select_requirement li{
 	font-family: 華康兒風體W3;
 	font-size: 20px;
 	font-weight: 900;
 }
 .select_result{
 	float: left;
-	width: 85%;
+	width: 82%;
+	height: 700px;
 	text-align: center;
+}
+.inform{
+	list-style-type: none;
 }
 .product_unit{
 	font-family: 微軟正黑體;
@@ -239,4 +250,7 @@ table {
 }
 .clear{
 	clear: both;
+}
+.select_btn{
+	margin-top: 15px;
 }
