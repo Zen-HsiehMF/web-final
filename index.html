@@ -4,25 +4,95 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<link rel="stylesheet" href="css/index.css" />
+	 <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+	<script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 </head>
 <body>
-<style type="text/css">
-</style>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtaQI1JTXjAtt1Mwsy6nVlZrao_uEUWRc">
-</script>
-<script type="text/javascript">
-    function initialize() {
-	var mapOptions = {
-	center: { lat: 22.7340927, lng: 120.2814604},
-	zoom: 16
-    };
-    var map = new google.maps.Map(
-    document.getElementById('map-canvas'),
-    mapOptions);
-    }
-    google.maps.event.addDomListener(
-    window, 'load', initialize);
-</script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtaQI1JTXjAtt1Mwsy6nVlZrao_uEUWRc&signed_in=true&callback=initMap" async defer>
+	</script>
+    <script>
+		function tMap() {
+			var area = document.getElementById("area").value;
+			var category = document.getElementById("category").value;
+			console.log(area);
+			console.log(category);
+  				$.ajax({ 
+	     			type:'GET', 
+	 				url:'http://data.kaohsiung.gov.tw/Opendata/DownLoad.aspx?Type=2&CaseNo1=AE&CaseNo2=6&FileType=1&Lang=C&FolderType=', 
+	    			success:function (data){ 
+	    				var myLatLng = {lat: 22.563, lng: 120.344};
+	    				var map = new google.maps.Map(document.getElementById('map-canvas'), {
+	  					zoom: 12,
+	  					center: myLatLng
+  						});
+
+	      				for (i = 0; data.length > i; i++) {
+					        var thisData = JSON.parse(data);
+					        var str;
+					        var str1;
+					        var str2;   
+					        var informaddress = thisData[i].informaddress;
+					        var servItem = thisData[i].servItem;
+					        var address = thisData[i].dataOrg;
+
+				        	if( informaddress.match(area) && servItem.match(category) ){
+				        		
+					          	str= '<li>'+thisData[i].id +'</li>';
+					          	var lat = '<li>'+thisData[i].lat +'</li>';
+					          	var lng = '<li>'+thisData[i].lng +'</li>';
+					          	$('.inform').append(str,lat,lng);
+					          	var uta = thisData[i].lat;
+					        	var lnga = thisData[i].lng;
+				        }
+				        	var myg = {lat: parseFloat(uta), lng: parseFloat(lnga)};
+				        	var marker = new google.maps.Marker({
+	    					position: myg,
+	    					map: map,
+	    					title: 'Hello World!'
+  							});
+						}
+	   				}
+  				});
+	}
+    </script>
+    <script>
+   function initMap() {
+  var map = new google.maps.Map(document.getElementById('map-canvas'), {
+    center: {lat: -34.397, lng: 150.644},
+    zoom: 8
+  });
+  var infoWindow = new google.maps.InfoWindow({map: map});
+
+  // Try HTML5 geolocation.
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+
+      infoWindow.setPosition(pos);
+      infoWindow.setContent('Location found.');
+      map.setCenter(pos);
+    }, function() {
+      handleLocationError(true, infoWindow, map.getCenter());
+    });
+	  } else {
+	    // Browser doesn't support Geolocation
+	    handleLocationError(false, infoWindow, map.getCenter());
+	  }
+	}
+
+	function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+	  infoWindow.setPosition(pos);
+	  infoWindow.setContent(browserHasGeolocation ?
+	                        'Error: The Geolocation service failed.' :
+	                        'Error: Your browser doesn\'t support geolocation.');
+	}
+    </script>
 	<div class="wrap">
 		<div class="header">
 		<li>
@@ -37,75 +107,70 @@
 						<li><a href="product.html">復健商品</a></li>
 					</ul>
 				</div>
-				<script>
-				$(".classify > ul").mouseover(function(){
-    				$(".classify > ul> li >a:first").css("background-color","blue");
-  				});
-  				$("ul.classify > li").mouseout(function(){
-    				$("ul.classify >li >a:first").css("color","white");
-  				});
-				</script>
 		</div>
 		<div class="index_space"></div>
-		<div class="select_zone">
+		<div class="select_requirement">
 			<ul>
 				<li>請選擇復健診所地區<br>
-					<select>
+					<select id="area">
 						<option value="" disabled selected>--請選擇--</option>
-    			      	<option value="1">楠梓區</option>
-    			 	    <option value="2">左營區</option>
-    			 	    <option value="3">三民區</option>
-		                <option value="4">鹽埕區</option>
-		                <option value="5">前金區</option>
-		                <option value="6">新興區</option>
-		                <option value="7">苓雅區</option>
-		                <option value="8">前鎮區</option>
-		                <option value="9">旗津區</option>
-		                <option value="10">小港區</option>
-		                <option value="11">鳳山區</option>
-		                <option value="12">大寮區</option>
-		                <option value="13">鳥松區</option>
-		                <option value="14">林園區</option>
-		                <option value="15">仁武區</option>
-		                <option value="16">大樹區</option>
-		                <option value="17">大社區</option>
-		                <option value="18">岡山區</option>
-		                <option value="19">路竹區</option>
-		                <option value="20">梓官區</option>
-		                <option value="21">彌陀區</option>
-		                <option value="22">橋頭區</option>
-		                <option value="23">永安區</option>
-		                <option value="24">燕巢區</option>
-		                <option value="25">田寮區</option>
-		                <option value="26">阿蓮區</option>
-		                <option value="27">茄萣區</option>
-		                <option value="28">湖內區</option>
-		                <option value="29">旗山區</option>
-		                <option value="30">美濃區</option>
-		                <option value="31">內門區</option>
-		                <option value="32">甲仙區</option>
-		                <option value="33">六龜區</option>
-		                <option value="34">杉林區</option>
-		                <option value="35">茂林區</option>
-		                <option value="36">桃源區</option>
-		                <option value="37">那瑪夏區</option>
+    			      	<option value="楠梓區">楠梓區</option>
+    			 	    <option value="左營區">左營區</option>
+    			 	    <option value="三民區">三民區</option>
+		                <option value="鹽埕區">鹽埕區</option>
+		                <option value="前金區">前金區</option>
+		                <option value="新興區">新興區</option>
+		                <option value="苓雅區">苓雅區</option>
+		                <option value="前鎮區">前鎮區</option>
+		                <option value="旗津區">旗津區</option>
+		                <option value="小港區">小港區</option>
+		                <option value="鳳山區">鳳山區</option>
+		                <option value="大寮區">大寮區</option>
+		                <option value="鳥松區">鳥松區</option>
+		                <option value="林園區">林園區</option>
+		                <option value="仁武區">仁武區</option>
+		                <option value="大樹區">大樹區</option>
+		                <option value="大社區">大社區</option>
+		                <option value="岡山區">岡山區</option>
+		                <option value="路竹區">路竹區</option>
+		                <option value="梓官區">梓官區</option>
+		                <option value="彌陀區">彌陀區</option>
+		                <option value="橋頭區">橋頭區</option>
+		                <option value="永安區">永安區</option>
+		                <option value="燕巢區">燕巢區</option>
+		                <option value="田寮區">田寮區</option>
+		                <option value="阿蓮區">阿蓮區</option>
+		                <option value="茄萣區">茄萣區</option>
+		                <option value="湖內區">湖內區</option>
+		                <option value="旗山區">旗山區</option>
+		                <option value="美濃區">美濃區</option>
+		                <option value="內門區">內門區</option>
+		                <option value="甲仙區">甲仙區</option>
+		                <option value="六龜區">六龜區</option>
+		                <option value="杉林區">杉林區</option>
+		                <option value="茂林區">茂林區</option>
+		                <option value="桃源區">桃源區</option>
+		                <option value="那瑪夏區">那瑪夏區</option>
+		                <option value="">不限</option>
 					</select>
 				</li>
 				<br>
 				<li>請選擇復健類別<br>
-					<select>
+					<select id="category">
 						<option value="" disabled selected>--請選擇--</option>
-    			      	<option value="1">職能</option>
-    			 	    <option value="2">心理</option>
-    			 	    <option value="3">物理</option>
-                		<option value="4">語言</option>
-                		<option value="5">舞蹈</option>
-                		<option value="6">特教</option>
-                		<option value="7">音樂</option>
-                		<option value="8">藝術</option>
-                		<option value="9">其他</option>
+    			      	<option value="職能">職能</option>
+    			 	    <option value="心理">心理</option>
+    			 	    <option value="物理">物理</option>
+                		<option value="語言">語言</option>
+                		<option value="舞蹈">舞蹈</option>
+                		<option value="特教">特教</option>
+                		<option value="音樂">音樂</option>
+                		<option value="藝術">藝術</option>
+                		<option value="其他">其他</option>
+                		<option value="不限">不限</option>
 					</select>
 				</li>
+				<input class="select_btn" type="submit" onclick="tMap()">
 			</ul>
 		</div>
 
